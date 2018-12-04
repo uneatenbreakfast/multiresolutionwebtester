@@ -1,0 +1,43 @@
+.size-container {
+  display: block;
+}
+.size-container__iframe {
+  width: 100%;
+  height: 100%;
+}
+.size-container__draggable-handler {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background: red;
+}
+
+.size-container__draggable {
+  position: absolute;
+  box-shadow: 15px 15px 35px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  background: black;
+  border-radius: 6px;
+  cursor: move;
+}
+
+.size-container__draggable-active {
+  pointer-events: none;
+}
+
+/* Resolutions */
+.desktop-size {
+  width: 100vw;
+  height: 100vh;
+}
+.tablet-size {
+  /* iPad */
+  width: 768px;
+  height: 1024px;
+}
+.mobile-size {
+  /* Iphone5 */
+  width: 320px;
+  height: 568px;
+}

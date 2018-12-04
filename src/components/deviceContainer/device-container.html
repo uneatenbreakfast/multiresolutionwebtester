@@ -1,0 +1,14 @@
+<div
+  :ref="handleId"
+  v-draggable="draggableValue"
+  class="size-container"
+  :class="getSizeClasses"
+  @mousedown="clickedOnContainer"
+  @mouseup="mouseupOnContainer"
+>
+  <iframe
+    class="size-container__iframe"
+    :class="{'size-container__draggable-active': dragActive}"
+    :src="targetUrl"
+  ></iframe>
+</div>

@@ -1,37 +1,17 @@
-import Vue from 'vue';
-import Vuex from 'vuex'
-import App from './components/App.vue';
-import SizeContainer from './components/SizeContainer.vue';
+import Vue from "vue";
+import Vuex from "vuex";
+import store from "./store";
+import registerComponent from "./registerComponents";
 
-
-
-Vue.use(Vuex)
-Vue.component('size-container', SizeContainer);
-
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
-
-
+Vue.use(Vuex);
+registerComponent();
 
 let v = new Vue({
-  el: '#app',
+  el: "#app",
   store,
   template: `
         <div>
             <app  />
         </div>
-    `,
-  data: {},
-  components: {
-    App,
-    SizeContainer
-  }
+    `
 });
