@@ -1,0 +1,10 @@
+<div>
+    <div class="url-container">
+      <input class="url-container__link-input" v-model="targetUrlInput">
+      <button class="url-container__submit-button" @click="setTargetUrl">Go</button>
+    </div>
+
+    <device-container size="desktop" :targetUrl="targetUrl"/>
+    <device-container size="tablet" :targetUrl="targetUrl"/>
+    <device-container size="mobile" :targetUrl="targetUrl"/>
+  </div>

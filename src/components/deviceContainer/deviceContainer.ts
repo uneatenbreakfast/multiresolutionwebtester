@@ -26,7 +26,7 @@ const deviceContainer = {
     };
   },
   mounted() {
-    // this.draggableValue.handle = this.$refs[this.handleId];
+    this.draggableValue.handle = this.$refs[this.handleId];
   },
   methods: {
     clickedOnContainer(e: any) {
@@ -37,17 +37,17 @@ const deviceContainer = {
     }
   },
   computed: {
-    // getSizeClasses() {
-    //   switch (this.size) {
-    //     case "desktop":
-    //       return "desktop-size";
-    //     case "tablet":
-    //       return "tablet-size size-container__draggable";
-    //     case "mobile":
-    //       return "mobile-size size-container__draggable";
-    //   }
-    //   return "";
-    // }
+    getSizeClasses() {
+      switch (this.size) {
+        case "desktop":
+          return "desktop-size";
+        case "tablet":
+          return "tablet-size size-container__draggable";
+        case "mobile":
+          return "mobile-size size-container__draggable";
+      }
+      return "";
+    }
   }
 };
 

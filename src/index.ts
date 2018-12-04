@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import store from "./store";
+import createStore from "./store";
 import registerComponent from "./registerComponents";
 
 Vue.use(Vuex);
 registerComponent();
+const store = createStore();
 
 let v = new Vue({
   el: "#app",
