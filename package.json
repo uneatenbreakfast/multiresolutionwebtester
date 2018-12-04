@@ -15,10 +15,15 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "vue": "^2.5.2",
+    "draggable": "^4.2.0",
+    "draggable-vue-directive": "^2.0.3",
+    "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
+    "vue-drag-drop": "^1.1.4",
+    "vue-drag-it-dude": "^1.2.0",
     "vue-property-decorator": "^6.0.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuedraggable": "^2.17.0"
   },
   "devDependencies": {
     "css-loader": "^0.28.1",
