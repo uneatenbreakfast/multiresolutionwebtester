@@ -1,14 +1,18 @@
 <!-- src/components/Hello.vue -->
 <template>
   <div
+    :ref="handleId"
     v-draggable="draggableValue"
     class="size-container"
     :class="getSizeClasses"
     @mousedown="clickedOnContainer"
+    @mouseup="mouseupOnContainer"
   >
-    <div class="size-container__draggable-handler" :ref="handleId" :style="getDragStyleString()"></div>
-
-    <iframe class="size-container__iframe" :src="targetUrl"></iframe>
+    <iframe
+      class="size-container__iframe"
+      :class="{'size-container__draggable-active': dragActive}"
+      :src="targetUrl"
+    ></iframe>
   </div>
 </template>
 
@@ -32,9 +36,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      dragging: false,
-      x: 0,
-      y: 0,
+      dragActive: false,
       handleId: "handle-id",
       draggableValue: {
         handle: undefined
@@ -46,35 +48,10 @@ export default Vue.extend({
   },
   methods: {
     clickedOnContainer(e: any) {
-      var rect = e.target.getBoundingClientRect();
-
-      const handle = this.$refs[this.handleId];
-
-      this.x = e.clientX - rect.left; //x position within the element.
-      this.y = e.clientY - rect.top - 25; //y position within the element.
+      this.dragActive = true;
     },
-    getDragStyleString(): string {
-      return `top:${this.y}px;left:${this.x}`;
-    },
-    startDrag() {
-      this.dragging = true;
-    },
-    stopDrag() {
-      this.dragging = false;
-    },
-    doDrag(e: any) {
-      if (this.dragging) {
-        var rect = e.target.getBoundingClientRect();
-
-        console.log("--------");
-        console.log(rect);
-
-        this.x = e.clientX - rect.left; //x position within the element.
-        this.y = e.clientY - rect.top; //y position within the element.
-
-        console.log(e, this.x, this.y);
-        console.log("y: ", e.pageY, rect.top, e.target);
-      }
+    mouseupOnContainer(e: any) {
+      this.dragActive = false;
     }
   },
   computed: {
@@ -95,7 +72,6 @@ export default Vue.extend({
 
 <style>
 .size-container {
-  border: 1px red solid;
   display: block;
 }
 .size-container__iframe {
@@ -104,10 +80,10 @@ export default Vue.extend({
 }
 .size-container__draggable-handler {
   display: block;
-  background: red;
   width: 50px;
   height: 50px;
   position: absolute;
+  background: red;
 }
 
 .size-container__draggable {
@@ -117,6 +93,10 @@ export default Vue.extend({
   background: black;
   border-radius: 6px;
   cursor: move;
+}
+
+.size-container__draggable-active {
+  pointer-events: none;
 }
 
 /* Resolutions */
