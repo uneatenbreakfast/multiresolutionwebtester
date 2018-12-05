@@ -8,7 +8,7 @@
 >
   <iframe
     class="size-container__iframe"
-    :class="{'size-container__draggable-active': dragActive}"
+    :class="{'size-container__draggable-active': getIsBeginDragged}"
     :src="targetUrl"
   ></iframe>
 </div>

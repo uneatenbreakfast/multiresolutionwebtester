@@ -1,40 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const flexbugsFixes = require("postcss-flexbugs-fixes");
-const postcssObjectFit = require("postcss-object-fit-images");
-const postcssDeduplicate = require("postcss-discard-duplicates");
-
-const stylesOut = "dist";
-const extractSass = new ExtractTextPlugin({
-  filename: `${stylesOut}/[name].css`,
-  disable: false
-});
-
-const postcssPlugins = function() {
-  const autopre = autoprefixer({
-    remove: true
-  });
-
-  return [
-    postcssUrl({
-      url: options => {
-        // Only convert root relative URLs, which CSS-Loader won't process into require().
-        if (!options.url.startsWith("/") || options.url.startsWith("//")) {
-          return options.url;
-        }
-
-        // Join together base-href, deploy-url and the original URL.
-        // Also dedupe multiple slashes into single ones.
-        return options.url.replace(/\/\/+/g, "/");
-      }
-    }),
-    autopre,
-    flexbugsFixes,
-    postcssObjectFit,
-    postcssDeduplicate
-  ];
-};
 
 module.exports = {
   entry: "./src/index.ts",
@@ -66,9 +31,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        // options: {
-        //   appendTsSuffixTo: [/\.vue$/],
-        // }
         use: {
           loader: "ts-loader",
           options: {
@@ -83,49 +45,26 @@ module.exports = {
           name: "[name].[ext]?[hash]"
         }
       },
-
-      {
-        test: /\.css$/,
-        use: { loader: "css-loader", options: { minimize: false, url: false } }
-      },
-
       {
         test: /\.scss$/,
         use: [
-          { loader: "css-loader", options: { minimize: false, url: false } },
-          "sass-loader"
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       }
-
-      /*{
-        enforce: "pre",
-        test: /\.scss$/,
-        loader: "import-glob-loader"
-      },
-      {
-        test: /\.scss$/,
-        use: extractSass.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: { sourceMap: true, importLoaders: 1 }
-            },
-            {
-              loader: "postcss-loader",
-              options: {
-                sourceMap: true,
-                ident: "postcss",
-                plugins: postcssPlugins
-              }
-            },
-            {
-              loader: "sass-loader",
-              options: { sourceMap: true, outputStyle: "expanded" }
-            }
-          ],
-          fallback: "style-loader"
-        })
-      }*/
     ]
   },
   resolve: {

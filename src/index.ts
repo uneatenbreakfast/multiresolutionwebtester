@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createStore from "./store";
 import registerComponent from "./registerComponents";
+import "./index.scss";
 
 Vue.use(Vuex);
 registerComponent();

@@ -21,9 +21,9 @@ export const mutations = {
 };
 
 export const actions = {
-  setDraggedState(commit: any, dragState: boolean) {
+  setDraggedState({ commit }: any, dragState: boolean) {
     const { mutations } = containerState;
-    commit(mutations.setDraggedState, dragState);
+    commit("setDraggedState", dragState);
   }
 };
 

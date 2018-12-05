@@ -2,9 +2,30 @@
     <div class="url-container">
       <input class="url-container__link-input" v-model="targetUrlInput">
       <button class="url-container__submit-button" @click="setTargetUrl">Go</button>
-    </div>
+      <button class="url-container__submit-button" @click="refreshUrl">Refresh</button>
 
-    <device-container size="desktop" :targetUrl="targetUrl"/>
-    <device-container size="tablet" :targetUrl="targetUrl"/>
-    <device-container size="mobile" :targetUrl="targetUrl"/>
+      <div class="controls">
+        <label class="controls__label">
+          <input type="checkbox" name="mobile" 
+            class="controls__button" 
+            v-model="mobileModeOn"/>
+          Mobile
+        </label>
+  
+        <label class="controls__label">
+          <input type="checkbox" name="tablet" 
+            class="controls__button"
+            v-model="tabletModeOn"/>
+          Tablet
+        </label>
+      </div>
+
+    </div>
+  
+    
+    <div class="device-container">
+      <device-container size="desktop" :targetUrl="targetUrl"/>
+      <device-container size="tablet" :targetUrl="targetUrl" v-if="tabletModeOn"/>
+      <device-container size="mobile" :targetUrl="targetUrl" v-if="mobileModeOn"/>
+    </div>
   </div>
