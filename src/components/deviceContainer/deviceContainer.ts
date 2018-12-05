@@ -13,6 +13,9 @@ const deviceContainer = {
     },
     targetUrl: {
       type: String
+    },
+    scroll: {
+      type: Function
     }
   },
   directives: {
@@ -28,10 +31,35 @@ const deviceContainer = {
   },
   mounted() {
     this.draggableValue.handle = this.$refs[this.handleId];
+
+    setTimeout(this.addListeners, 5000);
   },
   methods: {
     ...mapActions(["setDraggedState"]),
 
+    addListeners() {
+      console.log("--");
+
+      this.$refs.devcont.onscroll = () => {
+        console.log("DDDxxxx 1");
+      };
+
+      document.addEventListener("wheel", () => {
+        console.log("DDD");
+      });
+
+      this.$refs.devcont.addEventListener("wheel", () => {
+        console.log("DDD");
+      });
+
+      this.$refs.devcont.contentWindow.addEventListener("wheel", () => {
+        console.log("DDD wee");
+      });
+
+      this.$refs.devcont.onscroll = () => {
+        console.log("DDDxxxx 1");
+      };
+    },
     clickedOnContainer(e: any) {
       this.setDraggedState(true);
     },

@@ -20,6 +20,9 @@ export const app = {
     },
     refreshUrl() {
       this.targetUrl = this.targetUrl + "/";
+    },
+    windowScroll() {
+      console.log("SCROLLxdsdx");
     }
   }
 };

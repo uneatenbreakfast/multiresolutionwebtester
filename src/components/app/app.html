@@ -24,8 +24,21 @@
   
     
     <div class="device-container">
-      <device-container size="desktop" :targetUrl="targetUrl"/>
-      <device-container size="tablet" :targetUrl="targetUrl" v-if="tabletModeOn"/>
-      <device-container size="mobile" :targetUrl="targetUrl" v-if="mobileModeOn"/>
+      <device-container 
+        size="desktop" 
+        :scroll="windowScroll"
+        :targetUrl="targetUrl"/>
+
+      <device-container 
+        size="tablet" 
+        :targetUrl="targetUrl" 
+        :scroll="windowScroll"
+        v-if="tabletModeOn"/>
+
+      <device-container 
+        size="mobile" 
+        :targetUrl="targetUrl"
+        :scroll="windowScroll" 
+        v-if="mobileModeOn"/>
     </div>
   </div>
